@@ -48,23 +48,25 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * We decided that if we compare two matrices and they have different dimensions, we return an empty matrix.
          */
         friend Matrix<bool> operator == (const Matrix& lhs, const Matrix& rhs) {
-            if (_m.size() != rhs._m.size()) return false;
+            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
             else {
-                if (_m.size() == 0) return true;
+                if (lhs._m.size() == 0) return Matrix<bool>();
                 else {
-                    if (_m[0].size() != rhs._m[0].size()) return false;
-                    else if (_m[0].size() == 0) return true;
+                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
+                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
                 }
             }
-            for (size_type r = 0; r < _m.size(); r++) {
-                for (size_type c = 0; c < _m[0].size(); c++) {
-                    if (_m[r][c] != rhs._m[r][c]) return false;
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] == rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
                 }
             }
-            return true;}
+            return result;}
 
         // -----------
         // operator !=
@@ -74,8 +76,23 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator != (const Matrix& lhs, const Matrix& rhs) {
-            // <your code>
-            return true;}
+            
+            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
+            else {
+                if (lhs._m.size() == 0) return Matrix<bool>();
+                else {
+                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
+                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
+                }
+            }
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] != rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
+                }
+            }
+            return result;}
 
         // ----------
         // operator <
@@ -85,8 +102,22 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator < (const Matrix& lhs, const Matrix& rhs) {
-            // <your code>
-            return false;}
+            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
+            else {
+                if (lhs._m.size() == 0) return Matrix<bool>();
+                else {
+                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
+                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
+                }
+            }
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] < rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
+                }
+            }
+            return result;}
 
         // -----------
         // operator <=
@@ -96,8 +127,23 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator <= (const Matrix& lhs, const Matrix& rhs) {
-            // <your code>
-            return true;}
+            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
+            else {
+                if (lhs._m.size() == 0) return Matrix<bool>();
+                else {
+                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
+                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
+                }
+            }
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] <= rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
+                }
+            }
+            return result;}
+            
 
         // ----------
         // operator >
@@ -107,8 +153,22 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator > (const Matrix& lhs, const Matrix& rhs) {
-            // <your code>
-            return true;}
+            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
+            else {
+                if (lhs._m.size() == 0) return Matrix<bool>();
+                else {
+                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
+                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
+                }
+            }
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] > rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
+                }
+            }
+            return result;}
 
         // -----------
         // operator >=
@@ -118,8 +178,22 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator >= (const Matrix& lhs, const Matrix& rhs) {
-            // <your code>
-            return true;}
+            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
+            else {
+                if (lhs._m.size() == 0) return Matrix<bool>();
+                else {
+                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
+                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
+                }
+            }
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] >= rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
+                }
+            }
+            return result;}
 
         // ----------
         // operator +
@@ -322,15 +396,44 @@ class Matrix {
          * <your documentation>
          */
         Matrix& operator *= (const T& rhs) {
-            // <your code>
+            for (size_type r = 0; r < _m.size(); r++) {
+                for (size_type c = 0; c < _m[0].size(); c++) {
+                    (*this)[r][c] = (*this)[r][c] * rhs;
+                }
+            }
             return *this;}
 
         /**
          * <your documentation>
          */
         Matrix& operator *= (const Matrix& rhs) {
-            // <your code>
-            return *this;}
+            if (_m.size() == rhs._m.size()) {
+                if (_m.size() == 0) {
+                    return *this;
+                }
+                if (_m[0].size() == rhs._m[0].size()) {
+                    if (_m[0].size() == 0) {
+                        return *this;
+                    }
+                    else {
+                        for (size_type r = 0; r < _m.size(); r++) {
+                            for (size_type c = 0; c < _m[0].size(); c++) {
+                                (*this)[r][c] = (*this)[r][c] * rhs[r][c];
+                            }
+                        }
+                        return *this;
+                    }
+                }
+                else {
+                    std::cout << "Column numbers do not match.\n";
+                    return *this;
+                }
+            }
+            else {
+                std::cout << "Row numbers do not match.\n";
+                return *this;
+            }
+        }
 
         // --
         // eq
