@@ -258,7 +258,13 @@ class Matrix {
          * <your documentation>
          */
         bool valid () const {
-            // <your code>
+            if (_m.size() == 0) return true;
+            else {
+                size_type s = _m[0].size();
+                for (size_type i = 0; i < _m.size(); i++) {
+                    if (_m[i].size() != s) return false;
+                }
+            }
             return true;}
 
     public:
@@ -406,31 +412,29 @@ class Matrix {
         /**
          * <your documentation>
          */
-        Matrix& operator *= (const Matrix& rhs) {
-            if (_m.size() == rhs._m.size()) {
-                if (_m.size() == 0) {
-                    return *this;
-                }
-                if (_m[0].size() == rhs._m[0].size()) {
-                    if (_m[0].size() == 0) {
-                        return *this;
+        Matrix& operator *= (const Matrix& rhs) { 
+            if (_m.size() == 0 || rhs._m.size() == 0) {
+                return *this;
+            }                
+            else if (_m[0].size() == rhs._m.size() ){
+                Matrix<T> lhs = (*this);
+                for (size_type i = 0; i < _m.size(); i++) {
+                    _m[i].resize(rhs._m[0].size(), 0);
+                    for (size_type c = 0; c < rhs._m[0].size(); c++) {
+                        _m[i][c] = 0;
                     }
-                    else {
-                        for (size_type r = 0; r < _m.size(); r++) {
-                            for (size_type c = 0; c < _m[0].size(); c++) {
-                                (*this)[r][c] = (*this)[r][c] * rhs[r][c];
-                            }
+                }
+                for (size_type c = 0; c < _m[0].size(); c++) {
+                    for (size_type r = 0; r < _m.size(); r++) {
+                        for (size_type old_r = 0; old_r < rhs._m.size(); old_r++) {
+                            _m[r][c] += (lhs._m[r][old_r] * rhs._m[old_r][c]);
                         }
-                        return *this;
                     }
                 }
-                else {
-                    std::cout << "Column numbers do not match.\n";
-                    return *this;
-                }
+                return *this;
             }
             else {
-                std::cout << "Row numbers do not match.\n";
+                std::cout << "The column of the first matrix does not match the row of the second matrix.\n";
                 return *this;
             }
         }

@@ -17,9 +17,8 @@
 #include "cppunit/extensions/HelperMacros.h" // CPPUNIT_TEST, CPPUNIT_TEST_SUITE, CPPUNIT_TEST_SUITE_END
 #include "cppunit/TestFixture.h"             // TestFixture
 #include "cppunit/TextTestRunner.h"          // TestRunner
-
+#define private public
 #include "Matrix.h"
-
 // ----------
 // TestMatrix
 // ----------
@@ -42,7 +41,7 @@ struct TestMatrix : CppUnit::TestFixture {
 
     void test_constructor2 () {
         Matrix<int> x;
-        Matrix<int> y(2);
+        Matrix<double> y(2);
         Matrix<int> z(2, 3);
         Matrix<int> t(2, 3, 4);
         CPPUNIT_ASSERT(y.size() == 2);}
@@ -54,7 +53,7 @@ struct TestMatrix : CppUnit::TestFixture {
     void test_constructor3 () {
         Matrix<int> x;
         Matrix<int> y(2);
-        Matrix<int> z(2, 3);
+        Matrix<short> z(2, 3);
         Matrix<int> t(2, 3, 4);
         CPPUNIT_ASSERT(z.size() == 2);}
 
@@ -67,7 +66,7 @@ struct TestMatrix : CppUnit::TestFixture {
         Matrix<int> x;
         Matrix<int> y(2);
         Matrix<int> z(2, 3);
-        Matrix<int> t(2, 3, 4);
+        Matrix<float> t(2, 3, 4.4);
         CPPUNIT_ASSERT(t.size() == 2);}
 
     // -----------
@@ -91,7 +90,7 @@ struct TestMatrix : CppUnit::TestFixture {
     // -----------
 
     void test_index3 () {
-        const Matrix<int> x(5, 5, 1000);
+        Matrix<int> x(5, 5, 1000);
         CPPUNIT_ASSERT(x[4][4] == 1000);}
 
 
@@ -149,18 +148,31 @@ struct TestMatrix : CppUnit::TestFixture {
 
     void test_plus3 () {
         Matrix<int> x(10, 10, 10);
-        Matrix<int> y(20, 20, 20);
-        Matrix<int> z = x + y; //different dimensions, should return x, unmodified.
+        Matrix<int> y(20, 10, 20);
+        Matrix<int> z = x + y; //different dimension (row), should return x, unmodified.
         CPPUNIT_ASSERT(z.eq(x));
         z += 100;
         Matrix<int> w(10, 10, 110);
         CPPUNIT_ASSERT(z.eq(w));}
 
     // ----------
-    // test_minus
+    // test_plus4
     // ----------
 
-    void test_minus () {
+    void test_plus4 () {
+        Matrix<int> x(10, 10, 10);
+        Matrix<int> y(10, 20, 20);
+        Matrix<int> z = x + y; //different dimension (column), should return x, unmodified.
+        CPPUNIT_ASSERT(z.eq(x));
+        z += 100;
+        Matrix<int> w(10, 10, 110);
+        CPPUNIT_ASSERT(z.eq(w));}
+
+    // ----------
+    // test_minus1
+    // ----------
+
+    void test_minus1 () {
         Matrix<int> x;
         Matrix<int> y;
         Matrix<int> z;
@@ -169,17 +181,118 @@ struct TestMatrix : CppUnit::TestFixture {
         x -= y;
         CPPUNIT_ASSERT(x.eq(z));}
 
+    // ----------
+    // test_minus2
+    // ----------
+
+    void test_minus2 () {
+        Matrix<int> x(4, 4, 6);
+        Matrix<int> y(4, 4, 10);
+        y -= x;
+        Matrix<int> w(4, 4, 4);
+        CPPUNIT_ASSERT(w.eq(y));}
+
+    // ----------
+    // test_minus3
+    // ----------
+
+    void test_minus3 () {
+        Matrix<int> x(10, 10, 10);
+        Matrix<int> y(20, 10, 20);
+        Matrix<int> z = y - x; //different dimension (row), should return y, unmodified.
+        CPPUNIT_ASSERT(z.eq(y));
+        z = z - 2;
+        Matrix<int> w(20, 10, 18);
+        CPPUNIT_ASSERT(z.eq(w));}
+
+    // ----------
+    // test_minus4
+    // ----------
+
+    void test_minus4 () {
+        Matrix<int> x(10, 10, 10);
+        Matrix<int> y(10, 20, 20);
+        Matrix<int> z = y - x; //different dimension (column), should return y, unmodified.
+        CPPUNIT_ASSERT(z.eq(y));
+        z = z - 2;
+        Matrix<int> w(10, 20, 18);
+        CPPUNIT_ASSERT(z.eq(w));}
+
+    // ----------
+    // test_valid1
+    // ----------
+
+    void test_valid1 () {
+        Matrix<int> x;
+        CPPUNIT_ASSERT(x.valid());}
+
+    // ----------
+    // test_valid2
+    // ----------
+
+    void test_valid2 () {
+        Matrix<int> x(5);
+        CPPUNIT_ASSERT(x.valid());}
+
+    // ----------
+    // test_valid3
+    // ----------
+
+    void test_valid3 () {
+        Matrix<int> x(5, 10);
+        CPPUNIT_ASSERT(x.valid());}
+
+    // ----------
+    // test_valid4
+    // ----------
+
+    void test_valid4 () {
+        Matrix<double> x(5, 10, 10.20);
+        CPPUNIT_ASSERT(x.valid());}
+
     // ---------------
-    // test_multiplies
+    // test_multiplies1
     // ---------------
 
-    void test_multiplies () {
+    void test_multiplies1 () {
         Matrix<int> x;
         Matrix<int> y;
         Matrix<int> z;
         x *= 0;
         CPPUNIT_ASSERT(x.eq(z));
+        //x *= y;
+        //CPPUNIT_ASSERT(x.eq(z))
+    ;}
+
+    // ---------------
+    // test_multiplies2
+    // ---------------
+
+    void test_multiplies2 () {
+        Matrix<int> x(4, 2, 2);
+        Matrix<int> y(2, 5, 3);
+        Matrix<int> z(4, 5, 12);
         x *= y;
+        CPPUNIT_ASSERT(x.eq(z));}
+
+    // ---------------
+    // test_multiplies3
+    // ---------------
+
+    void test_multiplies3 () {
+        Matrix<int> x(4, 2, 2);
+        Matrix<int> y;
+        y = x * y;
+        CPPUNIT_ASSERT(x.eq(y));}
+
+    // ---------------
+    // test_multiplies4
+    // ---------------
+
+    void test_multiplies4 () {
+        Matrix<int> x(4, 2, 2);
+        Matrix<int> y(3, 5, 3);
+        Matrix<int> z = x * y;
         CPPUNIT_ASSERT(x.eq(z));}
 
     // -------------
@@ -207,6 +320,8 @@ struct TestMatrix : CppUnit::TestFixture {
     // -----
 
     CPPUNIT_TEST_SUITE(TestMatrix);
+    CPPUNIT_TEST(test_iterator);
+    CPPUNIT_TEST(test_const_iterator);
     CPPUNIT_TEST(test_constructor1);
     CPPUNIT_TEST(test_constructor2);
     CPPUNIT_TEST(test_constructor3);
@@ -214,15 +329,24 @@ struct TestMatrix : CppUnit::TestFixture {
     CPPUNIT_TEST(test_index1);
     CPPUNIT_TEST(test_index2);
     CPPUNIT_TEST(test_index3);
-    CPPUNIT_TEST(test_equals);
-    CPPUNIT_TEST(test_less_than);
     CPPUNIT_TEST(test_plus1);
     CPPUNIT_TEST(test_plus2);
     CPPUNIT_TEST(test_plus3);
-    CPPUNIT_TEST(test_minus);
-    CPPUNIT_TEST(test_multiplies);
-    CPPUNIT_TEST(test_iterator);
-    CPPUNIT_TEST(test_const_iterator);
+    CPPUNIT_TEST(test_plus4);
+    CPPUNIT_TEST(test_minus1);
+    CPPUNIT_TEST(test_minus2);
+    CPPUNIT_TEST(test_minus3);
+    CPPUNIT_TEST(test_minus4);
+    CPPUNIT_TEST(test_valid1);
+    CPPUNIT_TEST(test_valid2);
+    CPPUNIT_TEST(test_valid3);
+    CPPUNIT_TEST(test_valid4);
+    CPPUNIT_TEST(test_multiplies1);
+    CPPUNIT_TEST(test_multiplies2);
+    CPPUNIT_TEST(test_multiplies3);
+    CPPUNIT_TEST(test_multiplies4);
+    CPPUNIT_TEST(test_equals);
+    CPPUNIT_TEST(test_less_than);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
