@@ -168,25 +168,6 @@ class Matrix {
             }
             return result;}
 
-/**************************************
-            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
-            else {
-                if (lhs._m.size() == 0) return Matrix<bool>();
-                else {
-                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
-                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
-                }
-            }
-            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
-            for (size_type r = 0; r < lhs._m.size(); r++) {
-                for (size_type c = 0; c < lhs._m[0].size(); c++) {
-                    if (lhs._m[r][c] >= rhs._m[r][c]) result[r][c] = true;
-                    else result[r][c] = false;
-                }
-            }
-            return result;}
-*****************************************/
-
         // ----------
         // operator +
         // ----------

@@ -1,28 +1,28 @@
 Project #4: Matlab
 Date: Wed, 24 Oct 2012
 
-Course Name:
-Unique:
+Course Name: CS 371P
+Unique: 53060
 
-First Name:
-Last Name:
-EID:
-E-mail:
-Estimated number of hours:
-Actual    number of hours:
+First Name: Zesen
+Last Name: Huang
+EID: zh2754
+E-mail: zesen1221@gmail.com
+Estimated number of hours: 10
+Actual number of hours: 8
 
-Partner First Name:
-Partner Last Name:
-Partner EID:
-Partner E-mail:
-Partner Estimated number of hours:
-Partner Actual    number of hours:
+Partner First Name: Roberto
+Partner Last Name: Weller
+Partner EID: rw9636
+Partner E-mail: rweller@utexas.edu
+Partner Estimated number of hours: 10
+Partner Actual    number of hours: 8
 
-Turnin CS Username:
-GitHub ID:
+Turnin CS Username: hzesen
+GitHub ID: hzesen1221
 GitHub Repository Name: cs371p-matlab
 
-Comments:
+Comments: none.
 
 ----------------
 Pair Programming
