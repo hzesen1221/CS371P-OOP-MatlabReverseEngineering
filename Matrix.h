@@ -413,6 +413,17 @@ class Matrix {
             }
             return true;}
 
+        // ---------
+        // push_back
+        // ---------
+
+        /**
+         * <your documentation>
+         */
+        void push_back (std::vector<T> col) {
+            _m.push_back(col);
+        }
+
         // -----
         // begin
         // -----
