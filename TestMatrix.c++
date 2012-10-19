@@ -95,28 +95,334 @@ struct TestMatrix : CppUnit::TestFixture {
 
 
     // -----------
-    // test_equals
+    // test_equals1
     // -----------
 
-    void test_equals () {
+    void test_equals1 () {
         Matrix<int>  x;
         Matrix<int>  y;
         Matrix<bool> z;
         Matrix<bool> t;
-        z = (x == y);
-        CPPUNIT_ASSERT(z.eq(t));}
+        try {
+            z = (x == y);
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
 
-    // --------------
-    // test_less_than
-    // --------------
+    // -----------
+    // test_equals2
+    // -----------
 
-    void test_less_than () {
+    void test_equals2 () {
+        Matrix<int>  x(3,3,10);
+        Matrix<int>  y(3,3,10);
+        Matrix<bool> z;
+        Matrix<bool> t(3,3,1);
+        try {
+            z = (x == y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_equals3
+    // -----------
+
+    void test_equals3 () {
+        Matrix<int>  x(3,3,10);
+        Matrix<int>  y(3,3,9);
+        Matrix<bool> z;
+        Matrix<bool> t(3,3,0);
+        try {
+            z = (x == y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_not_equals1
+    // -----------
+
+    void test_not_equals1 () {
         Matrix<int>  x;
         Matrix<int>  y;
         Matrix<bool> z;
         Matrix<bool> t;
-        z = (x == y);
-        CPPUNIT_ASSERT(z.eq(t));}
+        try {
+            z = (x != y);
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_not_equals2
+    // -----------
+
+    void test_not_equals2 () {
+        Matrix<int>  x(10,20,30);
+        Matrix<int>  y(10,20,30);
+        Matrix<bool> z;
+        Matrix<bool> t(10,20,0);
+        try {
+            z = (x != y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_not_equals3
+    // -----------
+
+    void test_not_equals3 () {
+        Matrix<int>  x(10,20,30);
+        Matrix<int>  y(10,20,31);
+        Matrix<bool> z;
+        Matrix<bool> t(10,20,1);
+        try {
+            z = (x != y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // --------------
+    // test_less_than1
+    // --------------
+
+    void test_less_than1 () {
+        Matrix<int>  x;
+        Matrix<int>  y;
+        Matrix<bool> z;
+        Matrix<bool> t;
+        try {
+            z = (x < y);
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_less_than2
+    // -----------
+
+    void test_less_than2 () {
+        Matrix<int>  x(10,20,20);
+        Matrix<int>  y(10,20,30);
+        Matrix<bool> z;
+        Matrix<bool> t(10,20,1);
+        try {
+            z = (x < y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_less_than3
+    // -----------
+
+    void test_less_than3 () {
+        Matrix<int>  x(10,20,20);
+        Matrix<int>  y(10,20,20);
+        Matrix<bool> z;
+        Matrix<bool> t(10,20,0);
+        try {
+            z = (x < y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // --------------
+    // test_less_than_or_equal_to1
+    // --------------
+
+    void test_less_than_or_equal_to1 () {
+        Matrix<int>  x;
+        Matrix<int>  y;
+        Matrix<bool> z;
+        Matrix<bool> t;
+        try {
+            z = (x <= y);
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_less_than_or_equal_to2
+    // -----------
+
+    void test_less_than_or_equal_to2 () {
+        Matrix<int>  x(10,5,2);
+        Matrix<int>  y(10,5,2);
+        Matrix<bool> z;
+        Matrix<bool> t(10,5,1);
+        try {
+            z = (x <= y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_less_than_or_equal_to3
+    // -----------
+
+    void test_less_than_or_equal_to3 () {
+        Matrix<int>  x(10,5,2);
+        Matrix<int>  y(10,5,1);
+        Matrix<bool> z;
+        Matrix<bool> t(10,5,0);
+        try {
+            z = (x <= y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // --------------
+    // test_greater_than1
+    // --------------
+
+    void test_greater_than1 () {
+        Matrix<int>  x;
+        Matrix<int>  y;
+        Matrix<bool> z;
+        Matrix<bool> t;
+        try {
+            z = (x > y);
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_greater_than2
+    // -----------
+
+    void test_greater_than2 () {
+        Matrix<int>  x(10,20,30);
+        Matrix<int>  y(10,20,20);
+        Matrix<bool> z;
+        Matrix<bool> t(10,20,1);
+        try {
+            z = (x > y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_greater_than3
+    // -----------
+
+    void test_greater_than3 () {
+        Matrix<int>  x(10,20,20);
+        Matrix<int>  y(10,20,20);
+        Matrix<bool> z;
+        Matrix<bool> t(10,20,0);
+        try {
+            z = (x > y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // --------------
+    // test_greater_than_or_equal_to1
+    // --------------
+
+    void test_greater_than_or_equal_to1 () {
+        Matrix<int>  x;
+        Matrix<int>  y;
+        Matrix<bool> z;
+        Matrix<bool> t;
+        try {
+            z = (x >= y);
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_greater_than_or_equal_to2
+    // -----------
+
+    void test_greater_than_or_equal_to2 () {
+        Matrix<int>  x(10,5,2);
+        Matrix<int>  y(10,5,2);
+        Matrix<bool> z;
+        Matrix<bool> t(10,5,1);
+        try {
+            z = (x >= y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
+
+    // -----------
+    // test_greater_than_or_equal_to3
+    // -----------
+
+    void test_greater_than_or_equal_to3 () {
+        Matrix<int>  x(10,5,20);
+        Matrix<int>  y(10,5,10);
+        Matrix<bool> z;
+        Matrix<bool> t(10,5,1);
+        try {
+            z = (x >= y);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(false);
+        }
+        CPPUNIT_ASSERT(z.eq(t));
+    }
 
     // ----------
     // test_plus1
@@ -128,8 +434,14 @@ struct TestMatrix : CppUnit::TestFixture {
         Matrix<int> z;
         x += 0;
         CPPUNIT_ASSERT(x.eq(z));
-        x += y;
-        CPPUNIT_ASSERT(x.eq(z));}
+        try {
+            x += y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+    }
 
     // ----------
     // test_plus2
@@ -149,11 +461,14 @@ struct TestMatrix : CppUnit::TestFixture {
     void test_plus3 () {
         Matrix<int> x(10, 10, 10);
         Matrix<int> y(20, 10, 20);
-        Matrix<int> z = x + y; //different dimension (row), should return x, unmodified.
-        CPPUNIT_ASSERT(z.eq(x));
-        z += 100;
-        Matrix<int> w(10, 10, 110);
-        CPPUNIT_ASSERT(z.eq(w));}
+        try {
+            Matrix<int> z = x + y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+    }
 
     // ----------
     // test_plus4
@@ -162,12 +477,17 @@ struct TestMatrix : CppUnit::TestFixture {
     void test_plus4 () {
         Matrix<int> x(10, 10, 10);
         Matrix<int> y(10, 20, 20);
-        Matrix<int> z = x + y; //different dimension (column), should return x, unmodified.
-        CPPUNIT_ASSERT(z.eq(x));
-        z += 100;
-        Matrix<int> w(10, 10, 110);
-        CPPUNIT_ASSERT(z.eq(w));}
-
+        Matrix<int> z;
+        Matrix<int> w;
+        try {
+            z = x + y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(z.eq(w));
+    }
     // ----------
     // test_minus1
     // ----------
@@ -178,8 +498,14 @@ struct TestMatrix : CppUnit::TestFixture {
         Matrix<int> z;
         x -= 0;
         CPPUNIT_ASSERT(x.eq(z));
-        x -= y;
-        CPPUNIT_ASSERT(x.eq(z));}
+        try {
+            x -= y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+    }
 
     // ----------
     // test_minus2
@@ -199,11 +525,17 @@ struct TestMatrix : CppUnit::TestFixture {
     void test_minus3 () {
         Matrix<int> x(10, 10, 10);
         Matrix<int> y(20, 10, 20);
-        Matrix<int> z = y - x; //different dimension (row), should return y, unmodified.
-        CPPUNIT_ASSERT(z.eq(y));
-        z = z - 2;
-        Matrix<int> w(20, 10, 18);
-        CPPUNIT_ASSERT(z.eq(w));}
+        Matrix<int> z;
+        try {
+            z = y - x;
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        Matrix<int> w;
+        CPPUNIT_ASSERT(z.eq(w));
+    }
 
     // ----------
     // test_minus4
@@ -212,12 +544,19 @@ struct TestMatrix : CppUnit::TestFixture {
     void test_minus4 () {
         Matrix<int> x(10, 10, 10);
         Matrix<int> y(10, 20, 20);
-        Matrix<int> z = y - x; //different dimension (column), should return y, unmodified.
-        CPPUNIT_ASSERT(z.eq(y));
-        z = z - 2;
-        Matrix<int> w(10, 20, 18);
-        CPPUNIT_ASSERT(z.eq(w));}
-
+        Matrix<int> z;
+        try {
+            z = y - x;
+            CPPUNIT_ASSERT(false);
+        }
+        catch(DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        Matrix<int> w(10, 20, 7);
+        Matrix<int> w2(10, 20, 13);
+        z = y - w2;
+        CPPUNIT_ASSERT(z.eq(w));
+    }
     // ----------
     // test_valid1
     // ----------
@@ -260,8 +599,13 @@ struct TestMatrix : CppUnit::TestFixture {
         Matrix<int> z;
         x *= 0;
         CPPUNIT_ASSERT(x.eq(z));
-        //x *= y;
-        //CPPUNIT_ASSERT(x.eq(z))
+        try {
+            x *= y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch (DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
     ;}
 
     // ---------------
@@ -281,9 +625,16 @@ struct TestMatrix : CppUnit::TestFixture {
 
     void test_multiplies3 () {
         Matrix<int> x(4, 2, 2);
+        Matrix<int> w = x;
         Matrix<int> y;
-        y = x * y;
-        CPPUNIT_ASSERT(x.eq(y));}
+        try {
+            x *= y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch (DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        CPPUNIT_ASSERT(x.eq(w));}
 
     // ---------------
     // test_multiplies4
@@ -292,8 +643,16 @@ struct TestMatrix : CppUnit::TestFixture {
     void test_multiplies4 () {
         Matrix<int> x(4, 2, 2);
         Matrix<int> y(3, 5, 3);
-        Matrix<int> z = x * y;
-        CPPUNIT_ASSERT(x.eq(z));}
+        Matrix<int> z;
+        try {
+            z = x * y;
+            CPPUNIT_ASSERT(false);
+        }
+        catch (DimensionException& e) {
+            CPPUNIT_ASSERT(true);
+        }
+        Matrix<int> w;
+        CPPUNIT_ASSERT(w.eq(z));}
 
     // -------------
     // test_iterator
@@ -345,8 +704,24 @@ struct TestMatrix : CppUnit::TestFixture {
     CPPUNIT_TEST(test_multiplies2);
     CPPUNIT_TEST(test_multiplies3);
     CPPUNIT_TEST(test_multiplies4);
-    CPPUNIT_TEST(test_equals);
-    CPPUNIT_TEST(test_less_than);
+    CPPUNIT_TEST(test_equals1);
+    CPPUNIT_TEST(test_equals2);
+    CPPUNIT_TEST(test_equals3);
+    CPPUNIT_TEST(test_not_equals1);
+    CPPUNIT_TEST(test_not_equals2);
+    CPPUNIT_TEST(test_not_equals3);
+    CPPUNIT_TEST(test_less_than1);
+    CPPUNIT_TEST(test_less_than2);
+    CPPUNIT_TEST(test_less_than3);
+    CPPUNIT_TEST(test_less_than_or_equal_to1);
+    CPPUNIT_TEST(test_less_than_or_equal_to2);
+    CPPUNIT_TEST(test_less_than_or_equal_to3);
+    CPPUNIT_TEST(test_greater_than1);
+    CPPUNIT_TEST(test_greater_than2);
+    CPPUNIT_TEST(test_greater_than3);
+    CPPUNIT_TEST(test_greater_than_or_equal_to1);
+    CPPUNIT_TEST(test_greater_than_or_equal_to2);
+    CPPUNIT_TEST(test_greater_than_or_equal_to3);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----

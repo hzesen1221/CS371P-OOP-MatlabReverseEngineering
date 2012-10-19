@@ -15,6 +15,16 @@
 #include <cstddef> // ptrdiff_t, size_t
 #include <vector>  // vector
 #include <iostream>
+#include <string>
+
+class DimensionException {
+private:
+    std::string msg;
+public:
+    DimensionException(std::string s) {msg = s;}
+    DimensionException() {msg = "Dimension not matched.\n";}
+    std::string err() {return msg;}
+};
 
 // ------
 // Matrix
@@ -51,14 +61,8 @@ class Matrix {
          * We decided that if we compare two matrices and they have different dimensions, we return an empty matrix.
          */
         friend Matrix<bool> operator == (const Matrix& lhs, const Matrix& rhs) {
-            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
-            else {
-                if (lhs._m.size() == 0) return Matrix<bool>();
-                else {
-                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
-                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
-                }
-            }
+            if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
+                throw DimensionException();
             Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
             for (size_type r = 0; r < lhs._m.size(); r++) {
                 for (size_type c = 0; c < lhs._m[0].size(); c++) {
@@ -76,15 +80,8 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator != (const Matrix& lhs, const Matrix& rhs) {
-            
-            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
-            else {
-                if (lhs._m.size() == 0) return Matrix<bool>();
-                else {
-                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
-                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
-                }
-            }
+            if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
+                throw DimensionException();
             Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
             for (size_type r = 0; r < lhs._m.size(); r++) {
                 for (size_type c = 0; c < lhs._m[0].size(); c++) {
@@ -102,14 +99,8 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator < (const Matrix& lhs, const Matrix& rhs) {
-            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
-            else {
-                if (lhs._m.size() == 0) return Matrix<bool>();
-                else {
-                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
-                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
-                }
-            }
+            if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
+                throw DimensionException();
             Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
             for (size_type r = 0; r < lhs._m.size(); r++) {
                 for (size_type c = 0; c < lhs._m[0].size(); c++) {
@@ -127,14 +118,8 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator <= (const Matrix& lhs, const Matrix& rhs) {
-            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
-            else {
-                if (lhs._m.size() == 0) return Matrix<bool>();
-                else {
-                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
-                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
-                }
-            }
+            if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
+                throw DimensionException();
             Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
             for (size_type r = 0; r < lhs._m.size(); r++) {
                 for (size_type c = 0; c < lhs._m[0].size(); c++) {
@@ -153,14 +138,8 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator > (const Matrix& lhs, const Matrix& rhs) {
-            if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
-            else {
-                if (lhs._m.size() == 0) return Matrix<bool>();
-                else {
-                    if (lhs._m[0].size() != rhs._m[0].size()) return Matrix<bool>();
-                    else if (lhs._m[0].size() == 0) return Matrix<bool>();
-                }
-            }
+            if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
+                throw DimensionException();
             Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
             for (size_type r = 0; r < lhs._m.size(); r++) {
                 for (size_type c = 0; c < lhs._m[0].size(); c++) {
@@ -178,6 +157,18 @@ class Matrix {
          * <your documentation>
          */
         friend Matrix<bool> operator >= (const Matrix& lhs, const Matrix& rhs) {
+            if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
+                throw DimensionException();
+            Matrix<bool> result = Matrix<bool> (lhs._m.size(), lhs._m[0].size());
+            for (size_type r = 0; r < lhs._m.size(); r++) {
+                for (size_type c = 0; c < lhs._m[0].size(); c++) {
+                    if (lhs._m[r][c] >= rhs._m[r][c]) result[r][c] = true;
+                    else result[r][c] = false;
+                }
+            }
+            return result;}
+
+/**************************************
             if (lhs._m.size() != rhs._m.size()) return Matrix<bool>();
             else {
                 if (lhs._m.size() == 0) return Matrix<bool>();
@@ -194,6 +185,7 @@ class Matrix {
                 }
             }
             return result;}
+*****************************************/
 
         // ----------
         // operator +
@@ -319,32 +311,14 @@ class Matrix {
          * <your documentation>
          */
         Matrix& operator += (const Matrix& rhs) {
-            if (_m.size() == rhs._m.size()) {
-                if (_m.size() == 0) {
-                    return *this;
-                }
-                if (_m[0].size() == rhs._m[0].size()) {
-                    if (_m[0].size() == 0) {
-                        return *this;
-                    }
-                    else {
-                        for (size_type r = 0; r < _m.size(); r++) {
-                            for (size_type c = 0; c < _m[0].size(); c++) {
-                                (*this)[r][c] = (*this)[r][c] + rhs[r][c];
-                            }
-                        }
-                        return *this;
-                    }
-                }
-                else {
-                    std::cout << "Column numbers do not match.\n";
-                    return *this;
+            if ((_m.size() != rhs._m.size()) || _m.size() == 0 || _m[0].size() != rhs._m[0].size() || _m[0].size() == 0)
+                throw DimensionException();
+            for (size_type r = 0; r < _m.size(); r++) {
+                for (size_type c = 0; c < _m[0].size(); c++) {
+                    (*this)[r][c] = (*this)[r][c] + rhs[r][c];
                 }
             }
-            else {
-                std::cout << "Row numbers do not match.\n";
-                return *this;
-            }
+            return *this;
         }
 
         // -----------
@@ -366,32 +340,14 @@ class Matrix {
          * <your documentation>
          */
         Matrix& operator -= (const Matrix& rhs) {
-            if (_m.size() == rhs._m.size()) {
-                if (_m.size() == 0) {
-                    return *this;
-                }
-                if (_m[0].size() == rhs._m[0].size()) {
-                    if (_m[0].size() == 0) {
-                        return *this;
-                    }
-                    else {
-                        for (size_type r = 0; r < _m.size(); r++) {
-                            for (size_type c = 0; c < _m[0].size(); c++) {
-                                (*this)[r][c] = (*this)[r][c] - rhs[r][c];
-                            }
-                        }
-                        return *this;
-                    }
-                }
-                else {
-                    std::cout << "Column numbers do not match.\n";
-                    return *this;
+            if ((_m.size() != rhs._m.size()) || _m.size() == 0 || _m[0].size() != rhs._m[0].size() || _m[0].size() == 0)
+                throw DimensionException();
+            for (size_type r = 0; r < _m.size(); r++) {
+                for (size_type c = 0; c < _m[0].size(); c++) {
+                    (*this)[r][c] = (*this)[r][c] - rhs[r][c];
                 }
             }
-            else {
-                std::cout << "Row numbers do not match.\n";
-                return *this;
-            }
+            return *this;
         }
 
         // -----------
@@ -414,16 +370,12 @@ class Matrix {
          */
         Matrix& operator *= (const Matrix& rhs) { 
             if (_m.size() == 0 || rhs._m.size() == 0) {
-                return *this;
+                throw DimensionException();
             }                
             else if (_m[0].size() == rhs._m.size() ){
                 Matrix<T> lhs = (*this);
-                for (size_type i = 0; i < _m.size(); i++) {
-                    _m[i].resize(rhs._m[0].size(), 0);
-                    for (size_type c = 0; c < rhs._m[0].size(); c++) {
-                        _m[i][c] = 0;
-                    }
-                }
+                for (size_type i = 0; i < _m.size(); i++)  _m[i].resize(rhs._m[0].size(), 0);
+                (*this) *= 0;
                 for (size_type c = 0; c < _m[0].size(); c++) {
                     for (size_type r = 0; r < _m.size(); r++) {
                         for (size_type old_r = 0; old_r < rhs._m.size(); old_r++) {
@@ -434,8 +386,7 @@ class Matrix {
                 return *this;
             }
             else {
-                std::cout << "The column of the first matrix does not match the row of the second matrix.\n";
-                return *this;
+                throw DimensionException();
             }
         }
 
