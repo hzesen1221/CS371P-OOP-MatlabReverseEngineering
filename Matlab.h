@@ -21,8 +21,13 @@
 // ------
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/horzcat.html
+ * Used to concatenate horizontally two matrices and return the new matrix.
+ * - the two matrices must not be empty.
+ * - the row number of the matrices must be the same.
+ * @param x the first matrix.
+ * @param y the second matrix.
+ * @return a new matrix which contains the columns of the first matrix, and then the columns of the second one.
+ * Reference: http://www.mathworks.com/help/matlab/ref/horzcat.html
  */
 template <typename T>
 T horzcat (const T& x, const T& y) {
@@ -39,8 +44,13 @@ T horzcat (const T& x, const T& y) {
 // ------
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/vertcat.html
+ * Used to concatenate vertically two matrices and return the new matrix.
+ * - the two matrices must not be empty.
+ * - the column number of the matrices must be the same.
+ * @param x the first matrix.
+ * @param y the second matrix.
+ * @return a new matrix which contains the rows of the first matrix, and then the rows of the second one.
+ * Reference: http://www.mathworks.com/help/matlab/ref/vertcat.html
  */
 template <typename T>
 T vertcat (const T& x, const T& y) {
@@ -55,8 +65,14 @@ T vertcat (const T& x, const T& y) {
 // ---
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/eye.html
+ * Used to generate:
+ * 1). an identity matrix that has same number rows and columns, of certain size.
+ * 2). a matrix that has different number of rows and columns, and has 1's on the diagonal.
+ * - the specified row and column number must be positive numbers.
+ * @param r the row number of the generated matrix.
+ * @param c the column number of the generated matrix.
+ * @return a new matrix of row r and column c, which contains 1's on the diagonal.
+ * Reference: http://www.mathworks.com/help/matlab/ref/eye.html
  */
 template <typename T>
 T eye (std::size_t r, std::size_t c) {
@@ -72,8 +88,11 @@ T eye (std::size_t r, std::size_t c) {
 // ----
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/diag.html
+ * Used to generate a square matrix which has the parameter vector as main diagonal, and 0's elsewhere. 
+ * - the parameter must be a vector, must not be empty. 
+ * @param x the vector to be put on the main diagonal of the result matrix.
+ * @return a new matrix when vector x on the main diagonal.
+ * Reference: http://www.mathworks.com/help/matlab/ref/diag.html
  */
 template <typename T>
 T diag (const T& x) {
@@ -89,8 +108,14 @@ T diag (const T& x) {
 // ---
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/dot.html
+ * Used to take the dot product of two vectors. 
+ * - vectors are implemented as a matrix that has to have only one column.
+ * - the parameter must be two vectors, must not be empty.
+ * - the two vectors must have the same length.
+ * @param x the first vector.
+ * @param x the second vector.
+ * @return a new 1x1 matrix which contains the scalar, the dot product of two vectors.
+ * Reference: http://www.mathworks.com/help/matlab/ref/dot.html
  */
 template <typename T>
 T dot (const T& x, const T& y) {
@@ -106,7 +131,7 @@ T dot (const T& x, const T& y) {
 // ----------------
 
 /**
- * <your documentation>
+ * <We did not implement this function>
  * http://www.mathworks.com/help/matlab/ref/linsolve.html
  */
 template <typename T>
@@ -119,8 +144,12 @@ T linsolve (const T& x, const T& y) {
 // ----
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/ones.html
+ * Used to generate an r by c matrix filled with 1's.
+ * - the specified row and column number must be positive numbers.
+ * @param r the row number of the generated matrix.
+ * @param c the column number of the generated matrix.
+ * @return a new matrix of row r and column c, which is filled with only 1's.
+ * Reference: http://www.mathworks.com/help/matlab/ref/ones.html
  */
 template <typename T>
 T ones (std::size_t r, std::size_t c) {
@@ -132,8 +161,12 @@ T ones (std::size_t r, std::size_t c) {
 // ----
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/rand.html
+ * Used to generate an r by c matrix filled with random values between 0 and 1.
+ * - the specified row and column number must be positive numbers.
+ * @param r the row number of the generated matrix.
+ * @param c the column number of the generated matrix.
+ * @return a new matrix of row r and column c, which is filled with random doubles values between 0 and 1.
+ * Reference: http://www.mathworks.com/help/matlab/ref/rand.html
  */
 template <typename T>
 T rand (std::size_t r, std::size_t c) {
@@ -154,8 +187,11 @@ T rand (std::size_t r, std::size_t c) {
 // ---------
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/transpose.html
+ * Used to transpose a matrix.
+ * - the matrix must not be empty. 
+ * @param x the matrix to be transposed.
+ * @return a new matrix after transpose.
+ * Reference: http://www.mathworks.com/help/matlab/ref/transpose.html
  */
 template <typename T>
 T transpose (const T& x) {
@@ -174,8 +210,12 @@ T transpose (const T& x) {
 // ----
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/tril.html
+ * Used to get the lower-triangle of a square matrix.
+ * - the matrix must not be empty. 
+ * - the matrix must be a square matrix.
+ * @param x the matrix whose lower-triangle will be obtained.
+ * @return the lower-triangle of matrix x.
+ * Reference: http://www.mathworks.com/help/matlab/ref/tril.html
  */
 template <typename T>
 T tril (const T& x) {
@@ -192,8 +232,12 @@ T tril (const T& x) {
 // ----
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/triu.html
+ * Used to get the upper-triangle of a square matrix.
+ * - the matrix must not be empty. 
+ * - the matrix must be a square matrix.
+ * @param x the matrix whose upper-triangle will be obtained.
+ * @return the upper-triangle of matrix x.
+ * Reference: http://www.mathworks.com/help/matlab/ref/triu.html
  */
 template <typename T>
 T triu (const T& x) {
@@ -210,8 +254,12 @@ T triu (const T& x) {
 // -----
 
 /**
- * <your documentation>
- * http://www.mathworks.com/help/matlab/ref/zeros.html
+ * Used to generate an r by c matrix filled with 0's.
+ * - the specified row and column number must be positive numbers.
+ * @param r the row number of the generated matrix.
+ * @param c the column number of the generated matrix.
+ * @return a new matrix of row r and column c, which is filled with only 0's.
+ * Reference: http://www.mathworks.com/help/matlab/ref/zeros.html
  */
 template <typename T>
 T zeros (std::size_t r, std::size_t c) {

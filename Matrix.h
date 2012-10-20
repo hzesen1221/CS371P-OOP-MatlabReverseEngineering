@@ -73,9 +73,13 @@ class Matrix {
 
         /**
          * Used to test the equality of the individual elements of the two matrices.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
          * @param lhs the matrix on the left hand side of the equation.
          * @param rhs the matrix on the right hand side of the equation.
-         * @return a matrix of boolean values which contains either 1 or 0 depending on the result of comparison.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result of
+         * comparison.
          */
         friend Matrix<bool> operator == (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -95,9 +99,13 @@ class Matrix {
 
         /**
          * Used to test the inequality of the individual elements of the two matrices.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
          * @param lhs the matrix on the left hand side of the equation.
          * @param rhs the matrix on the right hand side of the equation.
-         * @return a matrix of boolean values which contains either 1 or 0 depending on the result of comparison.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result
+         * of comparison.
          */
         friend Matrix<bool> operator != (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -116,7 +124,15 @@ class Matrix {
         // ----------
 
         /**
-         * <your documentation>
+         * Used to compare the individual elements of the two matrices to check which elements of
+         * the lhs matrix are less than the element at same loction in the rhs matrix.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result of
+         * comparison.
          */
         friend Matrix<bool> operator < (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -135,7 +151,15 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to compare the individual elements of the two matrices to check which elements of
+         * the lhs matrix are less than or equal to the element at same loction in the rhs matrix.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result
+         * of comparison.
          */
         friend Matrix<bool> operator <= (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -155,7 +179,15 @@ class Matrix {
         // ----------
 
         /**
-         * <your documentation>
+         * Used to compare the individual elements of the two matrices to check which elements of
+         * the lhs matrix are greater than the element at same loction in the rhs matrix.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result
+         * of comparison.
          */
         friend Matrix<bool> operator > (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -174,7 +206,15 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to compare the individual elements of the two matrices to check which elements of
+         * the lhs matrix are greater than or equal to than the element at same loction in the rhs matrix.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result 
+         * of comparison.
          */
         friend Matrix<bool> operator >= (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -193,13 +233,22 @@ class Matrix {
         // ----------
 
         /**
-         * <your documentation>
+         * Used to enable addition operation by calling the +=() funtion.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the component of type T which will be added to the individual elements of lhs.
+         * @return a matrix of elements type T.
          */
         friend Matrix operator + (Matrix lhs, const T& rhs) {
             return lhs += rhs;}
 
         /**
-         * <your documentation>
+         * Used to enable addition operation by calling the +=() funtion.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of elements type T.
          */
         friend Matrix operator + (Matrix lhs, const Matrix& rhs) {
             return lhs += rhs;}
@@ -209,13 +258,22 @@ class Matrix {
         // ----------
 
         /**
-         * <your documentation>
+         * Used to enable subtraction by calling the -=() funtion.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the component of type T which will be subtracted from the individual elements of lhs.
+         * @return a matrix of elements type T.
          */
         friend Matrix operator - (Matrix lhs, const T& rhs) {
             return lhs -= rhs;}
 
         /**
-         * <your documentation>
+         * Used to enable subtraction by calling the -=() funtion.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of elements type T.
          */
         friend Matrix operator - (Matrix lhs, const Matrix& rhs) {
             return lhs -= rhs;}
@@ -225,13 +283,22 @@ class Matrix {
         // ----------
 
         /**
-         * <your documentation>
+         * Used to enable multiplication operation by calling the *=() funtion.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the component of type T which will be multiplied with the individual elements of lhs.
+         * @return a matrix of elements type T.
          */
         friend Matrix operator * (Matrix lhs, const T& rhs) {
             return lhs *= rhs;}
 
         /**
-         * <your documentation>
+         * Used to enable multiplication operation by calling the *=() funtion.
+         * - the matrices must not be empty.
+         * - the number of rows of the rhs matrix must be equal the number of columns of the 
+         * - left hand side matrix.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of elements type T.
          */
         friend Matrix operator * (Matrix lhs, const Matrix& rhs) {
             return lhs *= rhs;}
@@ -248,7 +315,8 @@ class Matrix {
         // -----
 
         /**
-         * <your documentation>
+         * Used to test the validity of this matrix: every row has the same number of columns.
+         * @return a boolean that indicates wether it is a valid matrix or not.
          */
         bool valid () const {
             if (_m.size() == 0) return true;
@@ -266,7 +334,10 @@ class Matrix {
         // ------------
 
         /**
-         * <your documentation>
+         * Construts a matrix of row r and column c, filled with v.
+         * @param r indicates number of rows matrix will have.
+         * @param c indicates number of columns matrix will have.
+         * @param v indicates the value of elements type T that will be initialized in matrix.
          */
         Matrix (size_type r = 0, size_type c = 0, const T& v = T()) {
             _m = std::vector< std::vector<T> >(r, std::vector<T>(c, v));
@@ -282,13 +353,17 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to obtain an individual row of the underlying matrix.
+         * @param i indicates the row number.
+         * @return a read/write reference to the row.
          */
         reference operator [] (size_type i) {
             return _m[i];}
 
         /**
-         * <your documentation>
+         * Used to obtain an individual row of the underlying matrix.
+         * @param i indicates the row number.
+         * @return a read-only reference to the row.
          */
         const_reference operator [] (size_type i) const {
             return (*const_cast<Matrix*>(this))[i];}
@@ -298,7 +373,10 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to perform the addtion between a matrix and an individual component of type T
+         * rhs, which will be added to the individual elements of the matrix.
+         * @param rhs the component to be added to the individual elements of the matrix.
+         * @return a reference of the matrix after addtion.
          */
         Matrix& operator += (const T& rhs) {
             for (size_type r = 0; r < _m.size(); r++) {
@@ -308,8 +386,17 @@ class Matrix {
             }
             return *this;}
 
+        // -----------
+        // operator +=
+        // -----------
+
         /**
-         * <your documentation>
+         * Used to perform the addtion between two matrices.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param rhs the matrix on the right hand side.
+         * @return a reference of the matrix after addtion.
          */
         Matrix& operator += (const Matrix& rhs) {
             if ((_m.size() != rhs._m.size()) || _m.size() == 0 || _m[0].size() != rhs._m[0].size() || _m[0].size() == 0)
@@ -327,7 +414,10 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to perform the subtraction between a matrix and an individual component of type T
+         * rhs, which will be subtracted from the individual elements of the matrix.
+         * @param rhs the component to be subtracted from the individual elements of the matrix.
+         * @return a reference of the matrix after subtraction.
          */
         Matrix& operator -= (const T& rhs) {
             for (size_type r = 0; r < _m.size(); r++) {
@@ -337,8 +427,17 @@ class Matrix {
             }
             return *this;}
 
+        // -----------
+        // operator -=
+        // -----------
+
         /**
-         * <your documentation>
+         * Used to perform the subtraction between two matrices.
+         * - the matrices must not be empty.
+         * - the matrices must have the same row.
+         * - the matrices must have the same column.
+         * @param rhs the matrix on the right hand side.
+         * @return a reference of the matrix after subtraction.
          */
         Matrix& operator -= (const Matrix& rhs) {
             if ((_m.size() != rhs._m.size()) || _m.size() == 0 || _m[0].size() != rhs._m[0].size() || _m[0].size() == 0)
@@ -356,7 +455,10 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to perform the multiplication between a matrix and an individual component of type T
+         * rhs, which will be multiplied with the individual elements of the matrix.
+         * @param rhs the component to be multiplied with the individual elements of the matrix.
+         * @return a reference of the matrix after multiplication.
          */
         Matrix& operator *= (const T& rhs) {
             for (size_type r = 0; r < _m.size(); r++) {
@@ -366,8 +468,17 @@ class Matrix {
             }
             return *this;}
 
+        // -----------
+        // operator *=
+        // -----------
+
         /**
-         * <your documentation>
+         * Used to perform matrix multiplication.
+         * - the matrices must not be empty.
+         * - the number of rows of the rhs matrix must be equal the number of columns of the 
+         * - left hand side matrix.
+         * @param rhs the matrix on the right hand side.
+         * @return a reference of the matrix after multiplication.
          */
         Matrix& operator *= (const Matrix& rhs) { 
             if (_m.size() == 0 || rhs._m.size() == 0) {
@@ -396,7 +507,9 @@ class Matrix {
         // --
 
         /**
-         * <your documentation>
+         * Used to test the equality of two matrices.
+         * @param rhs the matrix on the right hand side.
+         * @return true of false to indicate whether these two matrices are equal.
          */
         bool eq (const Matrix& rhs) const {
             if (_m.size() != rhs._m.size()) return false;
@@ -419,10 +532,11 @@ class Matrix {
         // ---------
 
         /**
-         * <your documentation>
+         * Used to add a row to the matrix.
+         * @row the row to be added
          */
-        void push_back (std::vector<T> col) {
-            _m.push_back(col);
+        void push_back (std::vector<T> row) {
+            _m.push_back(row);
         }
 
         // -----
@@ -430,13 +544,13 @@ class Matrix {
         // -----
 
         /**
-         * <your documentation>
+         * @return a read/write iterator that points to the beginning of the matrix.
          */
         iterator begin () {
             return _m.begin();}
 
         /**
-         * <your documentation>
+         * @return a read-only iterator that points to the beginning of the matrix.
          */
         const_iterator begin () const {
             return const_cast<Matrix*>(this)->begin();}
@@ -446,13 +560,13 @@ class Matrix {
         // ---
 
         /**
-         * <your documentation>
+         * @return a read/write iterator that points to the end of the matrix.
          */
         iterator end () {
             return _m.end();}
 
         /**
-         * <your documentation>
+         * @return a read-only iterator that points to the end of the matrix.
          */
         const_iterator end () const {
             return const_cast<Matrix*>(this)->end();}
@@ -462,7 +576,7 @@ class Matrix {
         // ----
 
         /**
-         * <your documentation>
+         * @return the size of the matrix, which is the row number.
          */
         size_type size () const {
             return _m.size();}};
