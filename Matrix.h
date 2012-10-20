@@ -17,6 +17,14 @@
 #include <iostream>
 #include <string>
 
+// ------------------
+// DimensionException
+// ------------------
+
+/**
+ * The exception thrown when a mismatch in the dimension of
+ * the matrices being operated on occurs.
+ */
 class DimensionException {
 private:
     std::string msg;
@@ -30,6 +38,12 @@ public:
 // Matrix
 // ------
 
+/**
+ * Design decision:
+ *
+ * When the first index of a matrix (the row) or the second index of a matrix (the column)
+ * happen to be zero, we consider it to be unoperatable. Therefore, we throw an DimensionException.
+ */
 template <typename T>
 class Matrix {
     public:
@@ -58,7 +72,10 @@ class Matrix {
         // -----------
 
         /**
-         * We decided that if we compare two matrices and they have different dimensions, we return an empty matrix.
+         * Used to test the equality of the individual elements of the two matrices.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result of comparison.
          */
         friend Matrix<bool> operator == (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)
@@ -77,7 +94,10 @@ class Matrix {
         // -----------
 
         /**
-         * <your documentation>
+         * Used to test the inequality of the individual elements of the two matrices.
+         * @param lhs the matrix on the left hand side of the equation.
+         * @param rhs the matrix on the right hand side of the equation.
+         * @return a matrix of boolean values which contains either 1 or 0 depending on the result of comparison.
          */
         friend Matrix<bool> operator != (const Matrix& lhs, const Matrix& rhs) {
             if ((lhs._m.size() != rhs._m.size()) || lhs._m.size() == 0 || lhs._m[0].size() != rhs._m[0].size() || lhs._m[0].size() == 0)

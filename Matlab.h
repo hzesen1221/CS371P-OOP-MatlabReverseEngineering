@@ -17,7 +17,7 @@
 #include <time.h>
 
 // ------
-// concat
+// horzcat
 // ------
 
 /**
@@ -33,6 +33,10 @@ T horzcat (const T& x, const T& y) {
         for (size_t c = 0; c < y[0].size(); c++) 
             result[r].push_back(y[r][c]);
     return result;}
+
+// ------
+// vertcat
+// ------
 
 /**
  * <your documentation>
